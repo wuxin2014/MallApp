@@ -1,0 +1,11 @@
+#login_container {
+    height: 100%;
+    position: relative;
+}
+
+.login_from {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

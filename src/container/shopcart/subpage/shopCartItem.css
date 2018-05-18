@@ -1,0 +1,6 @@
+.shop_cart_item_wrap {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid gainsboro;
+    padding: 10px;
+}

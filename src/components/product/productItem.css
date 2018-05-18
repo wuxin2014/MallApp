@@ -1,0 +1,24 @@
+.product_item_wrap {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    border-bottom: 1px solid gainsboro;
+}
+
+.product_img {
+    width: 120px;
+    height: 80px;
+    background-color: azure;
+}
+
+.product_right {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.product_item_price {
+    color: red;
+    font-size: 18px;
+    margin-top: 16px;
+}
