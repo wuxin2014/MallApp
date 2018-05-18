@@ -16,15 +16,18 @@ class BuyNum extends React.Component {
   }
 
   onIncrease() {
-    console.log(this.state.num);
-    this.setState((prevState, props) => ({num: prevState.num+1}));
+    const {num} = this.state;
+    const newNum = num+1;
+    // this.setState((prevState, props) => ({num: prevState.num+1}));
+    this.setState({num: newNum});
+    this.props.changeNum(newNum);
   }
 
   onDecrease() {
-    console.log(this.state.num);
     const {num} = this.state;
     const newNum = num > 0 ? num-1 : 0;
     this.setState({num: newNum});
+    this.props.changeNum(newNum);
   }
 
 
