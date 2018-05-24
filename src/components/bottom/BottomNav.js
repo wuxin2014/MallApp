@@ -20,21 +20,31 @@ const navData = [
   },
 ];
 
-const BottomNav = ({onChangeTab}) => {
-  return (
+class BottomNav extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+  render() {
+    const {onChangeTab, tab} = this.props;
+    return (
       <div className="bottom_wrap">
         {
           navData.map(data => {
             return (
-                <BottomItem
-                    key={data.id}
-                    data={data}
-                    onChangeTab={onChangeTab} />
+              <BottomItem
+                key={data.id}
+                data={data}
+                onChangeTab={onChangeTab}
+                curTab={tab} />
             );
           })
         }
       </div>
-  );
-};
+    );
+  }
+}
 
 export default BottomNav;

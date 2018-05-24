@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../../components/header/Header';
 import ProductItem from '../../components/product/ProductItem';
 import Buy from './subpage/Buy';
 import {getProductDetail} from '../../service/productService';
@@ -20,24 +19,36 @@ class ProductDetail extends React.Component {
     console.log('onAddShopCart', num);
     const {detailData} = this.state;
 
-    let shopCartData = sessionStorage.getItem('shopCartData');
-    const arr = shopCartData ? JSON.parse(shopCartData) : [];
-    const data = {
-      num,
+
+    const proData = {
+      num: 1,
       name: detailData.name,
       id: detailData.id,
-      price: 200,
+      price: detailData.price,
     };
-    arr.push(data);
-    sessionStorage.setItem('shopCartData', JSON.stringify(arr));
 
+    let shopCartData = sessionStorage.getItem('shopCartData');
+    const arr = shopCartData ? JSON.parse(shopCartData) : [];
+
+    const isExist = arr.filter(item => item.id === detailData.id);
+    if(isExist.length > 0) {
+      arr.map(item => {
+        if(item.id === detailData.id) {
+          item.num ++;
+        }
+        return item;
+      });
+    } else {
+      arr.push(proData);
+    }
+
+    sessionStorage.setItem('shopCartData', JSON.stringify(arr));
   }
 
 
   render() {
     return (
         <div>
-          <Header title="商品详情" />
           <div className="common_content">
             {
               this.state.detailData && <ProductItem data={this.state.detailData} />

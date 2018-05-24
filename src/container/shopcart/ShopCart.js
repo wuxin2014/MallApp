@@ -1,6 +1,6 @@
 import React from 'react';
 import ShopCartItem from './subpage/ShopCartItem';
-import Header from '../../components/header/Header';
+import AddressInfo from './subpage/AddressInfo';
 
 class ShopCart extends React.Component {
   constructor(props) {
@@ -32,33 +32,30 @@ class ShopCart extends React.Component {
 
   render() {
     const {arrData} = this.state;
-
     let totalPrice = 0;
     arrData.forEach(item => {
       totalPrice += item.price * item.num;
     });
 
     return (
-        <div>
-          <Header title="购物车" />
-          <div className="common_content">
-            {
-              arrData.map(item => {
-                return <ShopCartItem key ={item.id} data={item} handleChangeNum={this.onChangeNum} />
-              })
-            }
-            {
-              arrData.length > 0
-                  ?
-                  <div>
-                    <p>总价：{totalPrice}</p>
-                  </div>
-                  :
-                  <div>购物车没有东西</div>
-            }
+      <div className="common_content">
+        <AddressInfo />
+        {
+          arrData.map(item => {
+            return <ShopCartItem key ={item.id} data={item} handleChangeNum={this.onChangeNum} />
+          })
+        }
+        {
+          arrData.length > 0
+              ?
+              <div>
+                <p>总价：{totalPrice}</p>
+              </div>
+              :
+              <div>购物车没有东西</div>
+        }
 
-          </div>
-        </div>
+      </div>
     );
   }
 }

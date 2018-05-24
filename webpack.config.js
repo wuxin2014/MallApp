@@ -54,11 +54,11 @@ const config = {
           '^/api/common': '/'
         }
       },
-      '/domainApi/agent': {
+      '/agentApi/agent': {
         target: 'http://dev-api-agent.lingshunbao.com',
         changeOrigin: true,
         "pathRewrite": {
-          '^/domainApi/agent': '/agent'
+          '^/agentApi/agent': '/agent'
         }
       }
     }

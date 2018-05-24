@@ -1,10 +1,11 @@
 import React from 'react';
-const BottomItem = ({data, onChangeTab}) => {
+const BottomItem = ({data, onChangeTab, curTab}) => {
   return (
-
-      <div className="bottom_item" onClick={() => onChangeTab(data.id)}>
-        {data.title}
-      </div>
+    <div
+      className={data.id === curTab ? "bottom_item active" : "bottom_item"}
+      onClick={() => onChangeTab(data.id)}>
+      {data.title}
+    </div>
   );
 };
 

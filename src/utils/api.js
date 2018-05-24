@@ -1,5 +1,5 @@
 const COMMON_PREFIX = '/api/common';
-const DOMAIN_PREFIX = '/domainApi/agent';
+const DOMAIN_PREFIX = '/agentApi/agent';
 
 const apis = {
   userLogin: `${DOMAIN_PREFIX}/user/login`,

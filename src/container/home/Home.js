@@ -1,6 +1,5 @@
 import React from 'react';
-import Header from '../../components/header/Header';
-import ProductList from '../ProductList';
+import ProductList from '../product/ProductList';
 import BottomNav from '../../components/bottom/BottomNav';
 import ShopCart from '../../container/shopcart/ShopCart';
 
@@ -35,11 +34,10 @@ class Home extends React.Component {
     const {history} = this.props;
     return (
         <div>
-          <Header title="首页" />
           {
             getPage(tab, history)
           }
-          <BottomNav onChangeTab={this.handleChangeTab} />
+          <BottomNav onChangeTab={this.handleChangeTab} tab={tab} />
         </div>
     );
   }
