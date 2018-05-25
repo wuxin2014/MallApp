@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import './productItem.css';
+import AddIcon from '../customBtn/AddIcon';
 
 const ProductItem = ({data, history}) => {
   const addShopCart = (ev) => {
@@ -40,12 +41,12 @@ const ProductItem = ({data, history}) => {
     <div onClick={jumpPage}>
       <div className="product_item_wrap">
         <img className="product_img"  src={data.pic} alt="logo" />
-        <div className="product_right">
+        <div className="product_item_info">
           <h4>{data.name}</h4>
           <span><span className="product_item_price">{`￥${data.price}`}</span>/份</span>
           <p>{`已售${data.salesNum}份`}</p>
         </div>
-        <div className="product_item_add" onClick={addShopCart}>加入</div>
+        <AddIcon onAddShopCart={addShopCart} text="+"/>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import React from 'react';
 import {getProductDetail} from '../../service/productService';
 import {CODE_SUCCESS, picUrl} from '../../utils';
 import './product_detail.css';
+import AddIcon from '../../components/customBtn/AddIcon';
 
 const proDetailData = {
   id: 3,
@@ -75,7 +76,7 @@ class ProductDetail extends React.Component {
                         <span style={{color: 'red', fontSize: 18}}>{`￥${detailData.price}`}</span>
                         /份
                       </span>
-                      <span onClick={this.onAddShopCart}>加入</span>
+                      <AddIcon onAddShopCart={this.onAddShopCart} text="+" />
                     </div>
                   </div>)
           }

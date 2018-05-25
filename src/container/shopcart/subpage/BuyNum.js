@@ -1,4 +1,5 @@
 import React from 'react';
+import AddIcon from '../../../components/customBtn/AddIcon';
 
 class BuyNum extends React.Component {
   constructor(props) {
@@ -35,10 +36,10 @@ class BuyNum extends React.Component {
     const {num} = this.state;
     const {handleAddClick} = this.props;
     return (
-        <div>
-          <button onClick={this.onDecrease}>-</button>
-          <input value={this.state.num} onChange={this.onChangeNum}/>
-          <button onClick={this.onIncrease}>+</button>
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+          <AddIcon onAddShopCart={this.onDecrease} text="-"/>
+          <input value={this.state.num} onChange={this.onChangeNum} style={{width: 40, textAlign: 'center'}}/>
+          <AddIcon onAddShopCart={this.onIncrease} text="+"/>
         </div>
     );
   }

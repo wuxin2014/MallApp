@@ -3,4 +3,11 @@
     flex-direction: row;
     border-bottom: 1px solid gainsboro;
     padding: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shop_cart_item_info {
+    flex: 1;
 }
