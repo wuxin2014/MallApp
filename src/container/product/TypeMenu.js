@@ -4,22 +4,10 @@ import TypeMenuItem from './TypeMenuItem';
 class TypeMenu extends React.Component {
   constructor(props){
     super(props);
-    const {menuData} = props;
-
-    this.state = {
-      curTabId: menuData.length > 0 ? menuData[0].id : 0,
-    };
-
-    this.changeTab = this.changeTab.bind(this);
-  }
-
-  changeTab(curTabId) {
-    this.setState({curTabId});
   }
 
   render() {
-    const {menuData, showSearch} = this.props;
-    const {curTabId} = this.state;
+    const {menuData, showSearch, changeMenuTab, menuId} = this.props;
     return (
       <div>
         <div onClick={showSearch} className="menu_search">
@@ -27,7 +15,7 @@ class TypeMenu extends React.Component {
         </div>
         <ul>
           {
-            menuData.map(menu => <TypeMenuItem key={menu.id} menu={menu} curTabId={curTabId} changeTab={this.changeTab} />)
+            menuData.map(menu => <TypeMenuItem key={menu.id} menu={menu} curTabId={menuId} changeTab={changeMenuTab} />)
           }
         </ul>
       </div>

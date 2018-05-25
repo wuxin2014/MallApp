@@ -3,8 +3,9 @@ const DOMAIN_PREFIX = '/agentApi/agent';
 
 const apis = {
   userLogin: `${DOMAIN_PREFIX}/user/login`,
-  queryProduct: `${DOMAIN_PREFIX}/commodity/queryCommodityWithPrice`,
-  productDetail: `${DOMAIN_PREFIX}/commodity/getCommodity`
+  queryCommodity :`${DOMAIN_PREFIX}/commodity/queryCommodity`,
+  queryCommodityWithPrice: `${DOMAIN_PREFIX}/commodity/queryCommodityWithPrice`,
+  getCommodity: `${DOMAIN_PREFIX}/commodity/getCommodity`,
 };
 
 module.exports = apis;

@@ -1,10 +1,10 @@
 import {request} from '../utils/request';
-import {queryProduct, productDetail} from '../utils/api';
+import {queryCommodity, getCommodity} from '../utils/api';
 
 
 export async function queryProductList(params) {
   return request({
-    url: queryProduct,
+    url: queryCommodity,
     method: 'get',
     data: params,
   });
@@ -12,7 +12,7 @@ export async function queryProductList(params) {
 
 export async function getProductDetail(params) {
   return request({
-    url: productDetail,
+    url: getCommodity,
     method: 'get',
     data: params,
   });

@@ -14,9 +14,9 @@ const navData = [
     to: '/shopCart'
   },
   {
-    title: '我',
+    title: '个人中心',
     id: 3,
-    to: '/',
+    to: '/personal',
   },
 ];
 

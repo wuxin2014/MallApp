@@ -2,6 +2,7 @@ import React from 'react';
 import ProductList from '../product/ProductList';
 import BottomNav from '../../components/bottom/BottomNav';
 import ShopCart from '../../container/shopcart/ShopCart';
+import Personal from '../personal/Personal';
 
 const getPage = (id, history) => {
   switch (id){
@@ -10,7 +11,7 @@ const getPage = (id, history) => {
     case 2:
       return <ShopCart />;
     case 3:
-      return <ProductList history={history} />;
+      return <Personal history={history} />;
     default:
       return <ProductList history={history} />;
   }

@@ -1,0 +1,37 @@
+.detail_out_wrap {
+    height: 100%;
+}
+
+.detail_info_wrap {
+    position: relative;
+    height: 240px;
+}
+
+.detail_info_wrap img {
+    width: 100%;
+    height: 240px;
+}
+
+.detail_info_wrap p {
+    width: 100%;
+    height: 40px;
+    background-color: black;
+    opacity: 0.5;
+    position: absolute;
+    bottom: 0;
+    color: white;
+    font-size: 20px;
+    line-height: 40px;
+    padding-left: 10px;
+}
+
+.shang_jia_info, .detail_price_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: beige;
+    height: 46px;
+    align-items: center;
+    padding: 0 10px;
+    margin-top: 10px;
+}

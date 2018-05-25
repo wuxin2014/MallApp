@@ -1,155 +1,79 @@
 import React from 'react';
 import ProductItem from '../../components/product/ProductItem';
 import {queryProductList} from '../../service/productService';
-import {CODE_SUCCESS} from '../../utils/index';
+import {CODE_SUCCESS, PRODUCT_TYPE_DATA, PRODUCT_TYPE_VALUE_MAP, picUrl, proData} from '../../utils';
 import TypeMenu from './TypeMenu';
 import './product.css';
-
-const menuData = [
-  {
-    id: 1,
-    name: '菜单一'
-  },
-  {
-    id: 2,
-    name: '菜单二'
-  },
-  {
-    id: 3,
-    name: '菜单三'
-  },
-  {
-    id: 4,
-    name: '菜单四'
-  },
-  {
-    id: 5,
-    name: '菜单五'
-  },
-  {
-    id: 6,
-    name: '菜单六'
-  },
-  {
-    id: 7,
-    name: '菜单七'
-  },{
-    id: 8,
-    name: '菜单八'
-  },
-  {
-    id: 9,
-    name: '菜单九'
-  },
-];
-
-const proData = [
-  {
-    id: 1,
-    pic: 'https://img12.360buyimg.com/babel/s700x740_jfs/t16234/256/2440912301/22227/f06f0865/5aaa61b8N4005b92e.jpg!q90!cc_350x370',
-    name: 'name1',
-    salesNum: 12,
-    price: 12,
-  },
-  {
-    id: 2,
-    pic: 'https://img12.360buyimg.com/babel/s700x740_jfs/t16234/256/2440912301/22227/f06f0865/5aaa61b8N4005b92e.jpg!q90!cc_350x370',
-    name: 'name2',
-    salesNum: 8,
-    price: 8,
-  },
-  {
-    id: 3,
-    pic: 'https://img12.360buyimg.com/babel/s700x740_jfs/t16234/256/2440912301/22227/f06f0865/5aaa61b8N4005b92e.jpg!q90!cc_350x370',
-    name: 'name3',
-    salesNum: 8,
-    price: 8,
-  },
-  {
-    id: 4,
-    pic: 'https://img12.360buyimg.com/babel/s700x740_jfs/t16234/256/2440912301/22227/f06f0865/5aaa61b8N4005b92e.jpg!q90!cc_350x370',
-    name: 'name4',
-    salesNum: 8,
-    price: 8,
-  },
-  {
-    id: 5,
-    pic: 'https://img12.360buyimg.com/babel/s700x740_jfs/t16234/256/2440912301/22227/f06f0865/5aaa61b8N4005b92e.jpg!q90!cc_350x370',
-    name: 'name5',
-    salesNum: 8,
-    price: 8,
-  },
-  {
-    id: 6,
-    pic: 'https://img12.360buyimg.com/babel/s700x740_jfs/t16234/256/2440912301/22227/f06f0865/5aaa61b8N4005b92e.jpg!q90!cc_350x370',
-    name: 'name6',
-    salesNum: 8,
-    price: 10,
-  },
-  {
-    id: 7,
-    pic: 'https://img12.360buyimg.com/babel/s700x740_jfs/t16234/256/2440912301/22227/f06f0865/5aaa61b8N4005b92e.jpg!q90!cc_350x370',
-    name: 'name7',
-    salesNum: 8,
-    price: 11,
-  },
-  {
-    id: 8,
-    pic: 'https://img12.360buyimg.com/babel/s700x740_jfs/t16234/256/2440912301/22227/f06f0865/5aaa61b8N4005b92e.jpg!q90!cc_350x370',
-    name: 'name8',
-    salesNum: 8,
-    price: 11,
-  }
-];
 
 export default class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: proData,
-      hasMore: false,
-      isLoadingMore: false,
-      page: 0,
-      isSearch: false,
+      data: [],
+      isSearchModal: false,
+      menuId: PRODUCT_TYPE_DATA.length > 0 ? PRODUCT_TYPE_DATA[0].id : 0,
+      isShowMenu: true,
     };
     this.showSearch = this.showSearch.bind(this);
     this.hideSearch = this.hideSearch.bind(this);
+    this.changeMenuTab = this.changeMenuTab.bind(this);
+    this.getCommodityByKeys = this.getCommodityByKeys.bind(this);
   }
 
   showSearch() {
-    this.setState({isSearch: true});
+    this.setState({isSearchModal: true});
   }
 
   hideSearch() {
-    this.setState({isSearch: false});
+    this.setState({isSearchModal: false});
+  }
+
+  changeMenuTab(menuId) {
+    this.setState({menuId});
+  }
+
+  getCommodityByKeys() {
+    const keyWord = this.keys.value;
+    if(!keyWord) {
+      alert('请输入搜素词');
+      return;
+    }
+    const result = queryProductList({keyWord});
+    this.resultHandle(result);
   }
 
   render() {
     const {history} = this.props;
-    const {isSearch} = this.state;
+    const {isSearchModal, menuId, isShowMenu, data} = this.state;
+    const proDataByType =  isShowMenu ? data.filter(item => item.type === menuId) : data;
     return (
         <div className="common_content">
           <div className="pro_wrap">
-            <div className="pro_menu">
-              <TypeMenu menuData={menuData} showSearch={this.showSearch} />
-            </div>
+            {
+              isShowMenu && <div className="pro_menu">
+                <TypeMenu menuData={PRODUCT_TYPE_DATA} showSearch={this.showSearch} menuId={menuId} changeMenuTab={this.changeMenuTab} />
+              </div>
+            }
+
             <div className="pro_list">
               {
-                this.state.data.map(item => {
-                  return <ProductItem key={item.id} data={item} history={history} />
-                })
+                proDataByType && proDataByType.length > 0
+                    ? proDataByType.map(item => {
+                      return <ProductItem key={item.id} data={item} history={history} />
+                    })
+                    : <span>{`没有${PRODUCT_TYPE_VALUE_MAP[menuId]}的数据`}</span>
               }
             </div>
           </div>
           {
-            isSearch &&
+            isSearchModal &&
             <div className="search_mask">
               <div className="search_content">
               </div>
               <div className="search_wrap">
-                <input className="search_input" placeholder="请输入商品名字" />
+                <input className="search_input" placeholder="请输入商品名字" ref={(node) => this.keys = node}/>
                 <div>
-                  <button className="btn_search">搜索</button>
+                  <button className="btn_search" onClick={this.getCommodityByKeys}>搜索</button>
                   <button className="btn_complete" onClick={this.hideSearch}>完成</button>
                 </div>
               </div>
@@ -161,8 +85,10 @@ export default class ProductList extends React.Component {
   }
 
   componentDidMount() {
-    // 获取商品列表数据
-    this.loadFirstPageData();
+    if (this.state.data.length === 0) {
+      // 获取商品列表数据
+      this.loadFirstPageData();
+    }
   }
 
   loadFirstPageData() {
@@ -175,9 +101,21 @@ export default class ProductList extends React.Component {
       const {code, result} = res;
       if (code === CODE_SUCCESS) {
         const {objs, total} = result;
-        this.setState({
-          data: objs,
+        objs.map(item => {
+          item.salesNum = 8;
+          item.price = 11;
+          item.pic = picUrl;
         });
+        if (this.state.isSearchModal) {
+          this.setState({
+            data: objs,
+            isShowMenu: false,
+            isSearchModal: false});
+        } else {
+          this.setState({
+            data: objs,
+          });
+        }
       } else if (code === 4996) {
         this.props.history.push('/login');
       }
