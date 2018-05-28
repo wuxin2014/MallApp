@@ -18,6 +18,8 @@ export default class ProductList extends React.Component {
     this.hideSearch = this.hideSearch.bind(this);
     this.changeMenuTab = this.changeMenuTab.bind(this);
     this.getCommodityByKeys = this.getCommodityByKeys.bind(this);
+
+    // console.log('ProductList===constructor');
   }
 
   showSearch() {
@@ -85,6 +87,7 @@ export default class ProductList extends React.Component {
   }
 
   componentDidMount() {
+    // console.log('ProductList===componentDidMount');
     if (this.state.data.length === 0) {
       // 获取商品列表数据
       this.loadFirstPageData();

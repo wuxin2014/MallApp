@@ -16,10 +16,11 @@ class ShopCart extends React.Component {
       arrData,
     };
     this.onChangeNum = this.onChangeNum.bind(this);
+
+    console.log('ShopCart===constructor');
   }
 
   onChangeNum(data) {
-    console.log(data);
     const {arrData} = this.state;
     const newData = arrData.map(item => {
       if (item.id === data.id) {
@@ -54,7 +55,6 @@ class ShopCart extends React.Component {
               :
               <div>购物车没有东西</div>
         }
-
       </div>
     );
   }
