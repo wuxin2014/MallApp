@@ -33,7 +33,7 @@ class Login extends React.Component {
     return (
       <div id="login_container">
         <Header title="登录"/>
-        <div className="common_content login_from">
+        <div className="login_from">
           <div>
             用户名：
             <input
