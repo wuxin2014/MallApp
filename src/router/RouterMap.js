@@ -10,7 +10,7 @@ const height = document.documentElement.clientHeight;
 const RouterMap = () => {
   return (
       <Router>
-        <div style={{height: height, position: 'relative'}}>
+        <div style={{height: '100vh', position: 'relative'}}>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
