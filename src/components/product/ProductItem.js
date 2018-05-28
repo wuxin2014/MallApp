@@ -39,12 +39,12 @@ const ProductItem = ({data, history}) => {
 
   return (
     <div onClick={jumpPage}>
-      <div className="product_item_wrap">
-        <img className="product_img"  src={data.pic} alt="logo" />
-        <div className="product_item_info">
-          <h4>{data.name}</h4>
-          <span><span className="product_item_price">{`￥${data.price}`}</span>/份</span>
-          <p>{`已售${data.salesNum}份`}</p>
+      <div className="prod_item_wrap">
+        <img width="90" height="50" src={data.pic} alt="logo" />
+        <div className="prod_item_info">
+          <span style={{fontSize: 14}}>{data.name}</span>
+          <span style={{fontSize: 12}}><span style={{fontSize: 14, color: 'red'}}>{`￥${data.price}`}</span>/份</span>
+          <span style={{fontSize: 12, color: 'gray'}}>{`已售${data.salesNum}份`}</span>
         </div>
         <AddIcon onAddShopCart={addShopCart} text="+"/>
       </div>
