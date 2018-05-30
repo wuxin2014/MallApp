@@ -27,11 +27,6 @@
     font-size: 14px;
 }
 
-.pro_menu li:hover {
-    color: red;
-    background-color: white;
-}
-
 .pro_menu .active {
     height: 40px;
     line-height: 40px;

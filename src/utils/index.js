@@ -62,18 +62,6 @@ const PRODUCT_TYPE_DATA = [
     id: 12,
     name: '干货类',
   },
-  {
-    id: 13,
-    name: '干货类1',
-  },
-  {
-    id: 14,
-    name: '干货类2',
-  },
-  {
-    id: 15,
-    name: '干货3',
-  }
 ];
 
 const PRODUCT_TYPE_VALUE_MAP = {
