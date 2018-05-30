@@ -1,5 +1,6 @@
 .pro_wrap {
     width: 100%;
+    height: 90vh;
     display: flex;
     flex-direction: row;
 }
@@ -7,6 +8,8 @@
 .pro_menu {
     width: 100px;
     background-color: #cdcdcd;
+    height: 100%;
+    overflow: auto;
 }
 
 .pro_menu .menu_search {
@@ -39,7 +42,7 @@
 
 .pro_list {
     flex: 1;
-    height: 580px;
+    height: 100%;
     overflow: auto;
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import ProductItem from '../../components/product/ProductItem';
 import {queryProductList} from '../../service/productService';
 import {login} from '../../service/loginService';
-import {CODE_SUCCESS, PRODUCT_TYPE_DATA, PRODUCT_TYPE_VALUE_MAP, picUrl, prefix} from '../../utils';
+import {CODE_SUCCESS, PRODUCT_TYPE_DATA, PRODUCT_TYPE_VALUE_MAP, picUrl, prefix, proData} from '../../utils';
 import TypeMenu from './TypeMenu';
 import './product.css';
 
