@@ -1,9 +1,9 @@
 import {request} from '../utils/request';
-import {userLogin} from '../utils/api';
+import {wxLogin} from '../utils/api';
 
 export async function login(params) {
   return request({
-    url: userLogin,
+    url: wxLogin,
     method: 'post',
     data: params,
   });

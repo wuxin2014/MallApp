@@ -1,7 +1,8 @@
 import React from 'react';
 import ProductItem from '../../components/product/ProductItem';
 import {queryProductList} from '../../service/productService';
-import {CODE_SUCCESS, PRODUCT_TYPE_DATA, PRODUCT_TYPE_VALUE_MAP, picUrl, proData} from '../../utils';
+import {login} from '../../service/loginService';
+import {CODE_SUCCESS, PRODUCT_TYPE_DATA, PRODUCT_TYPE_VALUE_MAP, picUrl, prefix} from '../../utils';
 import TypeMenu from './TypeMenu';
 import './product.css';
 
@@ -18,8 +19,6 @@ export default class ProductList extends React.Component {
     this.hideSearch = this.hideSearch.bind(this);
     this.changeMenuTab = this.changeMenuTab.bind(this);
     this.getCommodityByKeys = this.getCommodityByKeys.bind(this);
-
-    // console.log('ProductList===constructor');
   }
 
   showSearch() {
@@ -81,19 +80,31 @@ export default class ProductList extends React.Component {
               </div>
             </div>
           }
-
         </div>
     );
   }
 
   componentDidMount() {
-    // console.log('ProductList===componentDidMount');
-    if (this.state.data.length === 0) {
-      // 获取商品列表数据
-      this.loadFirstPageData();
-    }
+    console.log('ProductList===constructor', this.props.history.location.search);
+    const {search} = this.props.history.location;
+    const params = search.substring(search.indexOf('?')+1).split('=');
+    console.log(params);
+    const grantResult = login({code: params[1]});
+    grantResult.then(res => {
+      const {code, result} = res;
+      if (code === CODE_SUCCESS) {
+        const {accessToken, userId} = result;
+        sessionStorage.setItem(`${prefix}accessToken`, accessToken);
+        sessionStorage.setItem(`${prefix}userId`, userId);
+        this.loadFirstPageData();
+      }
+      console.log(res);
+    }).catch(err => {
+
+    });
   }
 
+  // 获取商品列表数据
   loadFirstPageData() {
     const result = queryProductList();
     this.resultHandle(result);
@@ -103,7 +114,7 @@ export default class ProductList extends React.Component {
     result.then(res => {
       const {code, result} = res;
       if (code === CODE_SUCCESS) {
-        const {objs, total} = result;
+        const {objs} = result;
         objs.map(item => {
           item.salesNum = 8;
           item.price = 11;
@@ -119,8 +130,6 @@ export default class ProductList extends React.Component {
             data: objs,
           });
         }
-      } else if (code === 4996) {
-        this.props.history.push('/login');
       }
     }).catch(err => {
 
